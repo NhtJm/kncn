@@ -10,13 +10,29 @@ export default function Mainpage({ toast, signIn, user }) {
   const [userLogin, setUserLogin] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
-  const googleAuth = () => {
-    window.open(`${process.env.REACT_APP_API_URL}/google`, "_self");
+  const googleAuth = async () => {
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      console.log(apiUrl);
+      if (!apiUrl) throw new Error("API URL is not defined");
+      window.open(`${apiUrl}/google`, "_self");
+    } catch (error) {
+      toast.error("Google sign-in failed");
+      console.error(error);
+    }
   };
 
-  const fbAuth = () => {
-    window.open(`${process.env.REACT_APP_API_URL}/facebook`, "_self");
+  const fbAuth = async () => {
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      if (!apiUrl) throw new Error("API URL is not defined");
+      window.open(`${apiUrl}/facebook`, "_self");
+    } catch (error) {
+      toast.error("Facebook sign-in failed");
+      console.error(error);
+    }
   };
+
   const openForgotPass = () => {
     navigate("/forgotpass");
   };
@@ -34,16 +50,38 @@ export default function Mainpage({ toast, signIn, user }) {
       [e.target.name]: e.target.value,
     });
   }
-  axios.defaults.withCredentials = true;
-  const handleLogin = (e) => {
-    //e.preventDefault();
-    if (userLogin.email === "" || userLogin.password === "") {
-      toast.success("Login successfully");
-      user = false;
-      navigate("/Home");
+
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!isValidEmail(userLogin.email)) {
+      toast.error("Please enter a valid email address");
+      return;
     }
-  
-    setUserLogin({ email: "", password: "" });
+    if (userLogin.password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/login`,
+        userLogin
+      );
+      if (response.data && response.data.success) {
+        toast.success("Login successfully");
+        signIn(); // Call the parent function to update the logged-in state
+        navigate("/Home");
+      } else {
+        toast.error(response.data.message || "Invalid login credentials");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      toast.error("An error occurred during login. Please try again.");
+    } finally {
+      setUserLogin({ email: "", password: "" });
+    }
   };
 
   const handleRegister = (e) => {

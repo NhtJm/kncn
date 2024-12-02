@@ -15,7 +15,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [todo, setTodo] = useState([]);
-  
+
   return (
     <BrowserRouter>
       <ToastContainer

@@ -14,6 +14,15 @@
   --text: black;
 }
 
+/* :root {
+  --nav: #8dd490;
+  --prof: #b2c8ba;
+  --bg: #ebf3e8;
+  --grey: #d2e3c8;
+  --serBar: #ffff;
+  --text: black;
+} */
+
 * {
   margin: 0;
   padding: 0;

@@ -86,7 +86,7 @@ Create the file `BackEnd/config.env` with your Atlas URI and the server port:
 
 **FrontEnd**
 ```
-REACT_APP_API_URL = your backend api with port
+REACT_APP_API_URL=http://localhost:8080
 ```
 **BackEnd**
 ```
@@ -94,13 +94,14 @@ MONGO_URL = your mongoDb url either from atlas or from localhost shell
 ```
 If you are going Authenticate with Facebook and Google Through PassportJs Stratgy...
 ```
-GOOGLE_CLIENT_ID = your google app clint id
-GOOGLE_CLIENT_SECRET = your google app client secret
-FACEBOOK_CLIENT_ID = your facebook app clint id
-FACEBOOK_CLIENT_SECRET = your facebook app client secret
-FRONTEND_DOMAIN = you react app url with port
-SESSION_SECRET = anything you want
-JWT_SECRET_KEY = anything you want
+GOOGLE_CLIENT_ID=<google-client-id-auth-2.0>
+GOOGLE_CLIENT_SECRET=<google-client-secret>
+FACEBOOK_CLIENT_ID=fb_client_id
+FACEBOOK_CLIENT_SECRET=fb_client_secret
+FRONTEND_DOMAIN=http://localhost:3000
+SESSION_SECRET=abcdefgh
+JWT_SECRET_KEY=abcdefghi
+
 ```
 Start server i.e., BackEnd:
 ```
@@ -110,7 +111,7 @@ npm start
 ```
 Start Client i.e., FrontEnd:
 ```
-cd Task-Manager--First-MERN/FrontEnd
+cd KNCN/FrontEnd
 npm install
 npm start or npm run dev
 ```
@@ -124,7 +125,7 @@ We appreciate your interest in contributing to our project! Whether you're a dev
 1. Fork the repository.
 2. Clone your forked repository:
  ```bash
-   git clone https://github.com/john12356/Task-Manager--First-MERN.git
+   git clone https://github.com/pdz1804/KNCN.git
 ```
 ## Issues and Bug Reports
 
@@ -144,7 +145,7 @@ This project is licensed under the [MIT License](LICENSE). See the [LICENSE](LIC
 We greatly appreciate all contributions to this project. Contributors will be acknowledged in our [CONTRIBUTORS.md](CONTRIBUTORS.md) file. Thank you for your support!
 ## Feedback
 
-For any queries and improvements please reach out to johnmoorthi85131@gmail.com
+For any queries and improvements please reach out to quangphunguyen1804@gmail.com
 
 # Thank You
 

@@ -28,7 +28,7 @@ const Dashboard = ({ notes, setNotes, tasks, setTasks, todo, setTodo }) => {
       <header id="dash-header" className="search-bar">
         <h1>Dashboard</h1>
       </header>
-      <main className="body-content ">
+      <main className="body-content">
         <div className="notes" data-aos="fade-up-right">
           <div className="con-head">
             <p>Notes</p>
@@ -40,7 +40,7 @@ const Dashboard = ({ notes, setNotes, tasks, setTasks, todo, setTodo }) => {
         </div>
         <div className="todos" data-aos="fade-up-left">
           <div className="con-head">
-            <p>Todo's</p>
+            <p>Todos</p>
             <button onClick={expandTodo} id="all">
               <AiOutlineArrowsAlt color="#F1EAFF" size={18} />
             </button>

@@ -9,6 +9,12 @@ import axios from "axios";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
+const getLocalDate = () => {
+  const offset = 7; // UTC+7 for Ho Chi Minh City
+  const localDate = new Date(new Date().getTime() + offset * 60 * 60 * 1000);
+  return localDate.toISOString().split("T")[0];
+};
+
 const Profile = ({ tasks }) => {
   const [quote, setQuote] = useState();
   const [author, setAuthor] = useState();
@@ -36,16 +42,37 @@ const Profile = ({ tasks }) => {
       .catch((err) => console.log(err));
   }, []);
 
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/task/getTask`)
+  //     .then((res) => {
+  //       let temp = res.data.filter(
+  //         (obj) =>
+  //           obj.done === false &&
+  //           obj.task.deadline === new Date().toISOString().split("T")[0]
+  //       );
+
+  //       setUpcomingTasks(temp);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [tasks]);
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/task/getTask`)
       .then((res) => {
-        let temp = res.data.filter(
-          (obj) =>
-            obj.done === false &&
-            obj.task.deadline === new Date().toISOString().split("T")[0]
-        );
-        setUpcomingTasks(temp);
+        const today = getLocalDate(); // Get today's date in UTC+7
+        const upcoming = res.data.filter((obj) => {
+          const taskDeadline = new Date(obj.task.deadline)
+            .toISOString()
+            .split("T")[0]; // Normalize task deadline to YYYY-MM-DD
+          console.log(
+            `Task: ${obj.task.name}, Done: ${obj.done}, Deadline: ${taskDeadline}, Today: ${today}`
+          ); // Debug task details
+          return obj.done === false && taskDeadline >= today; // Include today and later deadlines
+        });
+        console.log("Filtered Upcoming Tasks:", upcoming); // Debug filtered tasks
+        setUpcomingTasks(upcoming); // Update state with filtered tasks
       })
       .catch((err) => console.log(err));
   }, [tasks]);

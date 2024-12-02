@@ -11,9 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 *{
   transition: all 0.2s ease-in-out;
 }
+
 :root {
   --nav : #86A789;
   --prof: #B2C8BA;
@@ -22,11 +24,21 @@ code {
   --serBar: #ffff;
   --text: black;
 }
+
+/* :root {
+  --nav: #8dd490;
+  --prof: #B2C8BA;
+  --bg: #EBF3E8;
+  --grey: #D2E3C8;
+  --serBar: #ffff;
+  --text: black;
+} */
+
 [data-theme="dark"] {
-  --nav:#2B2A4C;
-  --prof :rgb(46, 45, 45);
-  --grey: #191825;
-  --bg : #000000;
-  --serBar: #635985;
+  --nav:#4f4e6a;
+  --prof :rgb(71, 70, 70);
+  --grey: #393749;
+  --bg : #383737;
+  --serBar: #7c739d;
   --text: #fff;
 }

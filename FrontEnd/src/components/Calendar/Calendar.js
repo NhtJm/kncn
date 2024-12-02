@@ -10,6 +10,8 @@ import "./Calendar.css";
 
 const Calendar = () => {
   const [value, setValue] = useState(new Date());
+
+  // eslint-disable-next-line no-unused-vars
   const [highlightedDays, setHighlightedDays] = useState([1, 2, 13]);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
